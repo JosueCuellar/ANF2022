@@ -173,7 +173,7 @@ class RatioSectorController extends Controller
 
         $ratios = DB::select(
             "SELECT R.parametro_id, R.id, P.parametro, R.double FROM razon R
-            JOIN parametro P ON R.parametro_id = P.id
+            JOIN ratio P ON R.parametro_id = P.id
             WHERE periodo_id = ? ORDER BY P.id", [$periodo_id]
         );
         $promedios = DB::select(
