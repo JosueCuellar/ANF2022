@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\CuentaEquivalente;
+use App\Cuenta;
+use App\Empresa;
+use App\VinculacionCuenta;
+use Illuminate\Support\Facades\DB;
+use App\TipoCuenta;
+
+class CuentaSistemaController extends Controller
+{
+    public function index()
+    {
+        //$cuentas= CuentaEquivalente::all();
+        $cuentas=CuentaEquivalente::all();
+        $idUsuarioLogeado=auth()->user()->id;
+        $empresa= Empresa::where('user_id', $idUsuarioLogeado)->first();
+
+        if(!$empresa->catalogo_listo){
+            return redirect()->route('catalogo_show')->with('errores', 'Confirme el catalogo por favor');
+        }
+
+        //Join para traer el nombre de la cuenta vinculada
+        $vinculaciones=DB::select('select ca.nombre, v.id_cuenta_sistema
+        from cuenta as ca
+        inner join  cuenta_empresa as v
+        on ca.id=v.id_cuenta
+        where v.id_empresa=?', [$empresa->id]);
+        foreach ($cuentas as $cuenta) {
+            foreach ($vinculaciones as $vinculacion) {
+                if($cuenta->id==$vinculacion->id_cuenta_sistema){
+                    $cuenta->vinculada=true;
+                    $cuenta->cuentaCatalogo=$vinculacion->nombre;
+                }
+            }
+        }
+        $cuentasEmpresa=Cuenta::with('tipo')->where('empresa_id',$empresa->id)->orderBy('codigo', 'asc')->get();
+        //Vista con catalogo_listo= falso
+        //Cuentas que ya han sido vinculadas en esta empresa
+
+        return view('simpleViews.empresa.cuentas', ['cuentas'=>$cuentas, 'cuentasEmpresa'=>$cuentasEmpresa]);
+    }
+
+    public function vinculacion(Request $request, $id){
+        //  dd($request->request);
+        request()->validate([
+            'cuenta'=> 'required',
+        ],
+        [
+            'cuenta.required' => "Debe escribir una cuenta para la vinculación",
+        ]);
+        $idUsuarioLogeado=auth()->user()->id;
+        $empresa= Empresa::where('user_id', $idUsuarioLogeado)->first();
+        if(!$cuentaEmpresa=Cuenta::with('tipo')->where('empresa_id',$empresa->id)->Where('nombre',$request->cuenta)->first()){
+            //Regresar con error, la cuenta que introdujo no existe
+            return back()->withErrors(['msg'=>"La cuenta que introdujo no existe en su catalogo"]);
+        }
+        //Vinculacion para Balance general y Estado de resultado
+        if(!$cuentaSistema=CuentaEquivalente::where('id',$id)->first()){
+            //Regresar con error, esta cuenta del sistema no existe
+            return back()->withErrors(['msg'=>"Esta cuenta del sistema no existe"]);
+        }
+        if(VinculacionCuenta::Where('id_empresa',$empresa->id)->Where('id_cuenta_sistema', $id)->first()){
+            //Regresar con error, esta cuenta ya ha sido vinculada anteriormente
+            return back()->withErrors(['msg'=>"La cuenta ".$cuentaSistema->nombre." ya ha sido vinculada con otra cuenta de su catalogo"]);
+        }
+        $vinculacion = new VinculacionCuenta();
+        $vinculacion->id_cuenta=$cuentaEmpresa->id;
+        $vinculacion->id_cuenta_sistema=$id;
+        $vinculacion->id_empresa=$empresa->id;
+        $vinculacion->save();
+
+        DB::delete('delete from razon where periodo_id in (select id from periodo where empresa_id = ?)', [$empresa->id]);    
+
+        return back()->with('status', 'Cuenta '.$request->cuenta.' vinculada exitosamente');
+
+        /*
+        if(!($empresa->catalogo_listo)){
+            return redirect()->route('catalogo_prueba');
+        }
+        //Vista con catalogo_listo= falso
+        //dd($cuentasEmpresa);
+        return view('simpleViews.empresa.cuentas', ['cuentas'=>$cuentas, 'cuentasEmpresa'=>$cuentasEmpresa,'empresa'=>$empresa]);
+         */
+    }
+
+    public function destroy($id){
+        $idUsuarioLogeado=auth()->user()->id;
+        $empresa= Empresa::where('user_id', $idUsuarioLogeado)->first();
+        if(!$vinculacion= VinculacionCuenta::Where('id_cuenta_sistema',$id)->Where('id_empresa',$empresa->id)->get()){
+            return back()->withErrors(['msg'=>"Esta cuenta no esta vinculada"]);
+        }
+        else{
+            $elimacion=DB::select('Delete from cuenta_empresa
+            where id_empresa=?
+            and id_cuenta_sistema=?',[$empresa->id, $id]);
+        }
+
+        DB::delete('delete from razon where periodo_id in (select id from periodo where empresa_id = ?)', [$empresa->id]);    
+
+        return back()->with('status', 'Cuenta desvinculada exitosamente');
+    }
+
+}
