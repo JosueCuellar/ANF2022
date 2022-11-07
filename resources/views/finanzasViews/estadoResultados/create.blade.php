@@ -94,14 +94,7 @@
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <br><br>
-                            <p >O puedes subir tu archivo .xlsx y cargar de una tu estado de resultados</p>
-                        <br>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aniadir_auto">+ Subir</i></button>
-                        </div>
-                    </div>
+                    
                      <!-- Modal de ingreso automatica -->
                      <div class="modal fade" id="aniadir_auto" tabindex="-1" role="dialog" aria-labelledby="auto_label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -159,7 +152,7 @@
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8 text-center">
-                            <button type="submit" class="btn btn-primary" form="ERGuardar"> Guardar </button>
+                            <button type="submit" class="btn btn-dark" form="ERGuardar"> Guardar </button>
                         </div>
                         <div class="col-md-2"></div>
                     </div>

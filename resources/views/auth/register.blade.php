@@ -91,29 +91,13 @@
                                         @endforeach
                                     </select>                             
                                 </div>
-                                <div class="input-group{{ $errors->has('nit') ? ' has-danger' : '' }}">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tim-icons icon-badge"></i>
-                                        </div>
-                                    </div>
-                                    <input required pattern="[0-9]{14}" maxlength="14" name="nit" class="form-control" placeholder="{{ __('Número de Identificación Tributaria') }}">
-                                    @include('alerts.feedback', ['field' => 'nit'])
-                                </div>
-                                <div class="input-group{{ $errors->has('nrc') ? ' has-danger' : '' }}">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="tim-icons icon-badge"></i>
-                                        </div>
-                                    </div>
-                                    <input required pattern="[0-9]{14}" maxlength="14" name="nrc" class="form-control" placeholder="{{ __('Número de Registro de Contribuyentes') }}">
-                                    @include('alerts.feedback', ['field' => 'nrc'])
-                                </div>                                
+
+                                  
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-primary btn-round btn-lg">{{ __('Registrarme') }}</button>
+                        <button type="submit" class="btn btn-dark btn-round btn-lg">{{ __('Registrarme') }}</button>
                         <br><br><br>
                     </div>
                 </div>

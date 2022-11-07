@@ -21,10 +21,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2 class="card-title">Vinculación de catálogo de la empresa</h2>
+                            <h2 class="card-title">Asignación de cuentas equivalentes</h2>
                         </div>
                         <div class="col-md-12">
-                            <h4 class="card-title">Para realizar los análisis respectivos a tus cuentas, primero debes vincularlas a nuestra base de datos.</h4>
+                            <h4 class="card-title">Selecciona cada una de las cuentas de tus catalogo y asocialas a las cuentas equivalentes</h4>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,7 @@
                             <thead class=" text-primary">
                                 <tr>                                    
                                     <th>Nombre</th>
-                                    <th>Descripción</th>
-                                    <th>Establecer vínculo</th>
+                                    <th>Relaciona</th>
                                     <th>Guardar/Eliminar</th>
                                 </tr>
                             </thead>
@@ -44,7 +43,6 @@
                                 @foreach ($cuentas as $cuenta)
                                 <tr>                                    
                                     <td>{{$cuenta->nombre}}</td>
-                                    <td>{{$cuenta->descripcion}}</td>
                                     <td>
                                         <form id="vinculacion{{$cuenta->id}}" action="{{route('cuenta_equivalente.vinculacion',$cuenta->id)}}" method="POST">
                                         @csrf
@@ -64,12 +62,12 @@
                                     <td>                                    
                                         <div class="btn-group" role="group">
                                         <!--boton de guardar-->
-                                            <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="vinculacion{{$cuenta->id}}" >
+                                            <button type="submit" class="btn btn-dark" form="vinculacion{{$cuenta->id}}" >
                                                 <i class="tim-icons icon-check-2"></i>
                                             </button>
-                                            
+                                    
                                         <!--boton de eliminar-->
-                                            <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarVinculacion{{$cuenta->id}}')">
+                                            <button type="button" class="btn btn-warning" onclick="confirmar('eliminarVinculacion{{$cuenta->id}}')">
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
                                         </div>

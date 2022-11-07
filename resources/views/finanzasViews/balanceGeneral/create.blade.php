@@ -51,12 +51,12 @@
                                                 <td>
                                                     <div class="btn-group" role="group">
                                                         <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta3->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta3->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                         <!--boton de eliminar-->
-                                                        <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
+                                                        <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
                                                             <i class="tim-icons icon-simple-remov"></i>
                                                         </button>
                                                     </div>
@@ -78,12 +78,12 @@
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                    <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta2->id}}" >
+                                                    <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta2->id}}" >
                                                         <i class="tim-icons icon-check-2"></i>
                                                     </button>
 
                                                     <!--boton de eliminar-->
-                                                    <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </div>
@@ -100,18 +100,18 @@
                                             <form id="insertar{{$cuenta->id}}" action="{{route('cuenta_periodo.storePadre', [$periodo, $cuenta->id])}}" method="post">
                                                 @csrf
                                                 <td>{{$cuenta->codigo}}</td>
-                                                <th class="text-primary">Total {{$cuenta->nombre}}</th>
+                                                <th class="text">Total {{$cuenta->nombre}}</th>
                                                 <td><input value="{{$cuenta->total}}" name="cuenta"  class="form-control" type="number" step="0.01"></td>
                                                 <td>
                                             </form>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                     <!--boton de eliminar-->
-                                                    <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </div>
@@ -151,12 +151,12 @@
                                                 <td>
                                                     <div class="btn-group" role="group">
                                                         <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta3->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta3->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                         <!--boton de eliminar-->
-                                                        <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
+                                                        <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
                                                             <i class="tim-icons icon-simple-remove"></i>
                                                         </button>
                                                     </div>
@@ -178,12 +178,12 @@
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta2->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta2->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                     <!--boton de eliminar-->
-                                                        <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
+                                                        <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
                                                             <i class="tim-icons icon-simple-remove"></i>
                                                         </button>
                                                     </div>
@@ -199,18 +199,18 @@
                                             <form id="insertar{{$cuenta->id}}" action="{{route('cuenta_periodo.storePadre', [$periodo, $cuenta->id])}}" method="post">
                                                 @csrf
                                                 <td>{{$cuenta->codigo}}</td>
-                                                <th class="text-primary">Total {{$cuenta->nombre}}</th>
+                                                <th class="text">Total {{$cuenta->nombre}}</th>
                                                 <td><input value="{{$cuenta->total}}" name="cuenta"  class="form-control" type="number" step="0.01"></td>
                                                 <td>
                                             </form>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                    <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta->id}}" >
+                                                    <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta->id}}" >
                                                         <i class="tim-icons icon-check-2"></i>
                                                     </button>
 
                                                     <!--boton de eliminar-->
-                                                    <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </div>
@@ -248,12 +248,12 @@
                                                 <td>
                                                     <div class="btn-group" role="group">
                                                         <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta3->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta3->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                         <!--boton de eliminar-->
-                                                        <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
+                                                        <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta3->id}}')">
                                                             <i class="tim-icons icon-simple-remove"></i>
                                                         </button>
                                                     </div>
@@ -275,12 +275,12 @@
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                    <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta2->id}}" >
+                                                    <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta2->id}}" >
                                                         <i class="tim-icons icon-check-2"></i>
                                                     </button>
 
                                                     <!--boton de eliminar-->
-                                                    <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta2->id}}')">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </div>
@@ -296,18 +296,18 @@
                                             <form id="insertar{{$cuenta->id}}" action="{{route('cuenta_periodo.storePadre', [$periodo, $cuenta->id])}}" method="post">
                                                 @csrf
                                                 <td>{{$cuenta->codigo}}</td>
-                                                <th class="text-primary">Total {{$cuenta->nombre}}</th>
+                                                <th class="text">Total {{$cuenta->nombre}}</th>
                                                 <td><input value="{{$cuenta->total}}" name="cuenta"  class="form-control" type="number" step="0.01"></td>
                                                 <td>
                                             </form>
                                                 <div class="btn-group" role="group">
                                                     <!--boton de guardar-->
-                                                        <button type="submit" class="btn btn-success btn-sm btn-round btn-icon" form="insertar{{$cuenta->id}}" >
+                                                        <button type="submit" class="btn btn-dark btn-sm" form="insertar{{$cuenta->id}}" >
                                                             <i class="tim-icons icon-check-2"></i>
                                                         </button>
 
                                                     <!--boton de eliminar-->
-                                                    <button type="button" class="btn btn-warning btn-sm btn-round btn-icon" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
+                                                    <button type="button" class="btn btn-warning btn-sm" onclick="confirmar('eliminarCuentaPeriodo{{$cuenta->id}}')">
                                                         <i class="tim-icons icon-simple-remove"></i>
                                                     </button>
                                                 </div>
@@ -335,14 +335,7 @@
                             </div>
 
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <br><br>
-                                <p >O puedes subir tu archivo .xlsx y cargar de una tu estado de resultados</p>
-                            <br>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#aniadir_auto">+ Subir</i></button>
-                        </div>
-                    </div>
+
                        <!-- Modal de ingreso automatica -->
                        <div class="modal fade" id="aniadir_auto" tabindex="-1" role="dialog" aria-labelledby="auto_label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -389,7 +382,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control inputFileVisible" placeholder="Seleccionar archivo">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-fab btn-round btn-primary">
+                                <button type="button" class="btn btn-fab btn-primary">
                                     <i class="tim-icons icon-attach-87"></i>
                                 </button>
                             </span>
