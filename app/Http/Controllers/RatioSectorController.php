@@ -29,19 +29,19 @@ class RatioSectorController extends Controller
         $rrcc = $instancia->calcular_rrcc($periodo, $empresa, $sector);
         $rpmc = $instancia->calcular_rpmc($periodo, $empresa, $sector);
         $rrcp = $instancia->calcular_rrcp($periodo, $empresa, $sector);
-        $rpmp = $instancia->calcular_rpmp($periodo, $empresa, $sector);  
-        $irat = $instancia->calcular_irat($periodo, $empresa, $sector);   
-        $iraf = $instancia->calcular_iraf($periodo, $empresa, $sector);                
-        $imb = $instancia->calcular_imb($periodo, $empresa, $sector);                
-        $imo = $instancia->calcular_imo($periodo, $empresa, $sector);  
-        $ge = $instancia->calcular_ge($periodo, $empresa, $sector);  
-        $gp = $instancia->calcular_gp($periodo, $empresa, $sector);  
-        $rep = $instancia->calcular_rep($periodo, $empresa, $sector);  
-        $rcgf = $instancia->calcular_rcgf($periodo, $empresa, $sector); 
-        $roe = $instancia->calcular_roe($periodo, $empresa, $sector); 
-        $roa = $instancia->calcular_roa($periodo, $empresa, $sector); 
-        $rsv = $instancia->calcular_rsv($periodo, $empresa, $sector); 
-        $rsi = $instancia->calcular_rsi($periodo, $empresa, $sector); 
+        $rpmp = $instancia->calcular_rpmp($periodo, $empresa, $sector);
+        $irat = $instancia->calcular_irat($periodo, $empresa, $sector);
+        $iraf = $instancia->calcular_iraf($periodo, $empresa, $sector);
+        $imb = $instancia->calcular_imb($periodo, $empresa, $sector);
+        $imo = $instancia->calcular_imo($periodo, $empresa, $sector);
+        $ge = $instancia->calcular_ge($periodo, $empresa, $sector);
+        $gp = $instancia->calcular_gp($periodo, $empresa, $sector);
+        $rep = $instancia->calcular_rep($periodo, $empresa, $sector);
+        $rcgf = $instancia->calcular_rcgf($periodo, $empresa, $sector);
+        $roe = $instancia->calcular_roe($periodo, $empresa, $sector);
+        $roa = $instancia->calcular_roa($periodo, $empresa, $sector);
+        $rsv = $instancia->calcular_rsv($periodo, $empresa, $sector);
+        $rsi = $instancia->calcular_rsi($periodo, $empresa, $sector);
 
         $ratios = Razon::where('periodo_id', $periodo_id)->get();
         if(count($ratios)==0){
@@ -170,6 +170,12 @@ class RatioSectorController extends Controller
         $periodo = Periodo::findOrFail($periodo_id);
         $empresa = Empresa::findOrFail($periodo->empresa_id);
         $sector = Sector::findOrFail($empresa->sector_id);
+        DB::raw(
+            "DROP VIEW IF EXISTS vista;
+            CREATE VIEW vista AS SELECT b.ratio_id as id,b.periodo_id, b.sector_id, a.parametro, b.valor FROM ratio a
+            LEFT JOIN ratio_general b ON a.id = b.ratio_id WHERE periodo_id = ? and sector_id = 2 ORDER BY a.id;",
+            [$periodo->year],[$empresa->sector_id]
+        );
 
         $ratios = DB::select(
             "SELECT R.parametro_id, R.id, P.parametro, R.double FROM razon R
@@ -180,7 +186,12 @@ class RatioSectorController extends Controller
             "SELECT AVG(R.double) AS prom FROM razon R
             JOIN periodo P ON R.periodo_id = P.id
             WHERE P.year = ? GROUP BY parametro_id ORDER BY parametro_id",
-            [$periodo->year] 
+            [$periodo->year]
+        );
+
+        $ratioSector = DB::select(
+            "SELECT a.parametro, b.valor
+            FROM ratio a LEFT JOIN vista b ON  a.id = b.id ORDER BY a.id;"
         );
 
         $empresa = Empresa::where('user_id', Auth::user()->id)->first();
@@ -197,10 +208,7 @@ class RatioSectorController extends Controller
             'periodo_id'    => $periodo_id,
             'ratios'        => $ratios,
             'promedios'     => $promedios,
+            'ratioSector'   => $ratioSector,
         ]);
     }
-    
-/*------------------------------------------------------------------------------------------------------------*/
-
-/*-------------------------------------- FUNCIÓN PARA CALCULAR EL RRI -----------------------------------------*/
 }
