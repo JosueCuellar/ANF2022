@@ -58,8 +58,8 @@ class ProfileController extends Controller
         $user = Auth::user()->id;
         $empresa = Empresa::where('user_id', $user)->first();
         $empresa->nombre = request('empresa');
-        $empresa->nit = request('nit');
-        $empresa->nrc = request('nrc');
+        // $empresa->nit = request('nit');
+        // $empresa->nrc = request('nrc');
         $empresa->sector_id = request('sector');
         $empresa->user_id = $user;
         $empresa->save();

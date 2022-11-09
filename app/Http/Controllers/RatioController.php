@@ -36,9 +36,9 @@ class RatioController extends Controller
 
         return view('finanzasViews.ratios.individual', [
             'periodos' => $periodos,
-            'rri' => [$rri[0], $rri[1]],
-            'rdi' => [$rdi[0], $rdi[1]],
-            'rpa' => [$rpa[0], $rpa[1]],
+            'rri' => [$rri[0]],
+            'rdi' => [$rdi[0]],
+            'rpa' => [$rpa[0]],
             //'rrcc' => [$rrcc[0], $rrcc[1]],
         ]);
     }
