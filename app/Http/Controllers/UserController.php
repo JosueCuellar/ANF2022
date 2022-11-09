@@ -78,8 +78,6 @@ class UserController extends Controller
 
         $empresa = new Empresa();
         $empresa->nombre = request('nombre');
-        $empresa->nit = request('nit');
-        $empresa->nrc = request('nrc');
         $empresa->sector_id = request('sector');
         $empresa->user_id = $user->id;
         $empresa->save();
@@ -94,6 +92,7 @@ class UserController extends Controller
        
         //Buscar el usuario con el id de entrada
         $user= User::findOrFail($id);
+
         
         //Retornar la vista
         return view ('users.show', [
@@ -164,8 +163,6 @@ class UserController extends Controller
 
         $empresa = Empresa::where('user_id', $id)->first();
         $empresa->nombre = request('empresa');
-        $empresa->nit = request('nit');
-        $empresa->nrc = request('nrc');
         $empresa->sector_id = request('sector');
         $empresa->save();
 
