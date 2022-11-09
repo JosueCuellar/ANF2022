@@ -58,6 +58,11 @@ class CuentaPerioController extends Controller
         //Regresar a la vista
         return redirect()->route('balance_general_create', $id_periodo)->with('status', 'Valor agregado exitosamente');
     }
+
+
+
+
+    
     public function uploadExcel(Request $request,$id_periodo,$anio){
 
         $id_user = auth()->user()->id;

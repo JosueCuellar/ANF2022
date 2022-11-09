@@ -10,7 +10,6 @@
                     <a href="{{ route('analisis_vertical.index') }}" @if ($pageSlug == 'analisis_vertical') class="nav-item nav-link navbarCustom" @else class="nav-item nav-link" @endif >Análisis Vertical</a>
                     @endcan
                     @can('razon.index')
-                    <a href="{{ route('ratio.individual_padre') }}" @if ($pageSlug == 'ratios') class="nav-item nav-link navbarCustom" @else class="nav-item nav-link" @endif >Ratios</a>
                     <a href="{{ route('ratio_sector.padre') }}" @if ($pageSlug == 'ratios_sector') class="nav-item nav-link navbarCustom" @else class="nav-item nav-link" @endif >Ratios por sector</a>
                     @endcan
                 </div>

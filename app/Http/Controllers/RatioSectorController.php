@@ -185,7 +185,7 @@ class RatioSectorController extends Controller
         }
 
         $v1 = " and sector_id = ";
-        $v2 = " ORDER BY a.id;";
+        $v2 = " ORDER BY b.ratio_id;";
         $sql = "SELECT b.ratio_id as id,b.periodo_id, b.sector_id, a.parametro, b.valor FROM ratio a LEFT JOIN ratio_general b ON a.id = b.ratio_id WHERE periodo_id = ".strval($periodo_id) .$v1 .$sect .$v2 ;
 
         DB::statement("CREATE VIEW vista AS ".$sql
