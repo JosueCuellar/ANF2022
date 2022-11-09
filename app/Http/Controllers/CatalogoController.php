@@ -305,7 +305,7 @@ class CatalogoController extends Controller
 
     }
 
-    public function  nguardarCuenta($request, $empresa, $metodo){
+    public function guardarCuenta($request, $empresa, $metodo){
         if($metodo){
             $cuenta= new Cuenta();
             //Validacion de que la cuenta no sea repetida
