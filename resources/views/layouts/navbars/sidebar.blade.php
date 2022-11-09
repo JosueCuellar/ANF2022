@@ -66,7 +66,13 @@
                     <p>{{ __('Ratios') }}</p>
                 </a>
             </li>
-            @endcan            
+            <li @if ($pageSlug == 'ratio') class="active " @endif>
+                <a href="{{ route('ratioGeneral.index') }}">
+                    <i class="tim-icons  icon-single-copy-04"></i>
+                    <p>{{ __('Ratios por sector') }}</p>
+                </a>
+            </li>
+            @endcan
             @canany(['users.index', 'roles.index', 'permission_user.index'])
             <li>
                 <a data-toggle="collapse" href="#seguridad" aria-expanded="false">
