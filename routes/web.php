@@ -143,18 +143,17 @@ Route::middleware(['auth'])->group(function(){
 	/*------------------------------------------- CATALOGO0 ---------------------------------------------*/
 	Route::get('/catalogo', 'CatalogoController@index')->name('catalogo_prueba')
 	->middleware('has.permission:cuenta.index');
-	//Route::get('/catalogo/create', 'HomeController@catalogo2')->name('catalogo_prueba_create');	
+	//Route::get('/catalogo/create', 'HomeController@catalogo2')->name('catalogo_prueba_create');
     Route::get('download/excel','CatalogoController@dowloadExcel')->name('catalogo.download');
     Route::post('upload/excel','CatalogoController@uploadExcel')->name('catalogo.upload');
 	Route::post('catalogo/deleteall','CatalogoController@BorrarCuentas')->name('cuenta.deleteall')
-	->middleware('has.permission:cuenta.destroy');	
+	->middleware('has.permission:cuenta.destroy');
 	Route::post('catalogo/confirmar','CatalogoController@ConfirmarCatalogo')->name('catalogo.confirmar')
 	->middleware('has.permission:cuenta.create');
 	Route::post('catalogo/confirmarVinculacion','CuentaSistemaController@confirmarVinculacion')->name('cuenta.vinculacion')
 	->middleware('has.permission:cuenta.create');
 	Route::get('/catalogo/show', 'CatalogoController@show')->name('catalogo_show')
 	->middleware('has.permission:cuenta.index');
-
 
 	//Guardar cuentas de forma manual
 	Route::post('/catalogo', 'CatalogoController@store')->name('cuenta_store')
@@ -163,6 +162,11 @@ Route::middleware(['auth'])->group(function(){
 	->middleware('has.permission:cuenta.edit');
 	Route::delete('/catalogo/{id}', 'CatalogoController@destroy')->name('cuenta.destroy')
 	->middleware('has.permission:cuenta.destroy');
+
+    /*---------------------------------------RATIO GENERAL------------------------------------------------*/
+    Route::get('/ratioGeneral', 'RatioGeneralController@index')->name('ratioGeneral.index');
+    Route::post('/ratioGeneral', 'RatioGeneralController@store')->name('ratioGeneral_store');
+    Route::delete('/ratioGeneral/{id}', 'RatioGeneralController@destroy')->name('ratioGeneral.destroy');
 
 
 

@@ -7,6 +7,7 @@
             <th width = "25%">Razón</th>
             <th width = "14%" class="text-right">Resultado</th>
             <th width = "14%" class="text-right">Promedio</th>
+            <th width = "14%" class="text-right">Ratio del sector</th>
             <th width = "2%"></th>
         </tr>
         @for ($i = 0; $i < count($ratios); $i++)
@@ -15,6 +16,7 @@
                     <td>{{$ratios[$i]->parametro}}</td>
                     <td class="text-right">{{$ratios[$i]->double}}</th>
                     <td class="text-right">{{number_format($promedios[$i]->prom, 2)}}</td>
+                    <td class="text-right">{{$ratioSector[$i]->valor}}</td>
                     <td></td>
                 </tr>
             @else
@@ -23,6 +25,7 @@
                         <td>{{$ratios[$i]->parametro}}</td>
                         <td class="text-right">---</td>
                         <td class="text-right">{{number_format($promedios[$i]->prom, 2)}}</td>
+                        <td class="text-right">{{$ratioSector[$i]->valor}}</td>
                         <td></td>
                     </tr>
                 @else
@@ -30,11 +33,12 @@
                         <td>{{$ratios[$i]->parametro}}</td>
                         <td class="text-right">---</td>
                         <td class="text-right">---</td>
+                        <td class="text-right">---</td>
                         <td></td>
                     </tr>
                 @endif
             @endif
-        @endfor        
+        @endfor
     </table>
 </div>
 
