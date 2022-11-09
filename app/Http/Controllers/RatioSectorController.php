@@ -170,11 +170,25 @@ class RatioSectorController extends Controller
         $periodo = Periodo::findOrFail($periodo_id);
         $empresa = Empresa::findOrFail($periodo->empresa_id);
         $sector = Sector::findOrFail($empresa->sector_id);
-        DB::raw(
-            "DROP VIEW IF EXISTS vista;
-            CREATE VIEW vista AS SELECT b.ratio_id as id,b.periodo_id, b.sector_id, a.parametro, b.valor FROM ratio a
-            LEFT JOIN ratio_general b ON a.id = b.ratio_id WHERE periodo_id = ? and sector_id = 2 ORDER BY a.id;",
-            [$periodo->year],[$empresa->sector_id]
+        $idUsuarioLogeado=auth()->user()->id;
+        DB::unprepared(
+            "DROP VIEW IF EXISTS vista;"
+        );
+
+        $sec = DB::select(
+            "SELECT sector_id FROM empresa
+            WHERE user_id = ? ", [$idUsuarioLogeado]
+        );
+        foreach ($sec as $valor)
+        {
+             $sect= $valor->sector_id;
+        }
+
+        $v1 = " and sector_id = ";
+        $v2 = " ORDER BY a.id;";
+        $sql = "SELECT b.ratio_id as id,b.periodo_id, b.sector_id, a.parametro, b.valor FROM ratio a LEFT JOIN ratio_general b ON a.id = b.ratio_id WHERE periodo_id = ".strval($periodo_id) .$v1 .$sect .$v2 ;
+
+        DB::statement("CREATE VIEW vista AS ".$sql
         );
 
         $ratios = DB::select(
@@ -211,4 +225,5 @@ class RatioSectorController extends Controller
             'ratioSector'   => $ratioSector,
         ]);
     }
+
 }
