@@ -104,24 +104,6 @@
                                 @endforeach
                             </select>                             
                         </div>
-                        <div class="input-group{{ $errors->has('nit') ? ' has-danger' : '' }}">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="tim-icons icon-badge"></i>
-                                </div>
-                            </div>
-                            <input required pattern="[0-9]{14}" maxlength="14" name="nit" class="form-control" placeholder="{{ __('Número de Identificación Tributaria') }}" value="{{$empresa->nit}}">
-                            @include('alerts.feedback', ['field' => 'nit'])
-                        </div>
-                        <div class="input-group{{ $errors->has('nrc') ? ' has-danger' : '' }}">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <i class="tim-icons icon-badge"></i>
-                                </div>
-                            </div>
-                            <input required pattern="[0-9]{14}" maxlength="14" name="nrc" class="form-control" placeholder="{{ __('Número de Registro de Contribuyentes') }}" value="{{$empresa->nrc}}">
-                            @include('alerts.feedback', ['field' => 'nrc'])
-                        </div>
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary btn-round btn-lg">{{ __('Actualizar') }}</button>
